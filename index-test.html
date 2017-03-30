@@ -15,6 +15,7 @@
     <!--业务逻辑处理-->
     <script src="./scripts/app.js"></script>
     <script src="./scripts/controller.js"></script>
+    <script src="./scripts/directive.js"></script>
 </head>
 
 <body ng-app="App">
@@ -48,6 +49,7 @@
             </div>
             <!-- 主体 -->
             <div ng-class='{body:true, collapse:collapsed}'>
+                <div yike-loading class="loading" ng-if='loaded'></div>
                 <div ng-view>
 
                 </div>

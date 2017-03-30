@@ -1,5 +1,5 @@
 //创建应用主模块
-var App = angular.module('App', ['ngRoute', 'Contrllers']);
+var App = angular.module('App', ['ngRoute', 'Contrllers', 'Directives']);
 
 //配置路由
 //传入配置路由的服务
@@ -27,6 +27,7 @@ App.run(['$rootScope', '$filter', function($rootScope, $filter) {
 
     //单击后改变状态
     $rootScope.toggle = function() {
+        //控制滑入滑出
         $rootScope.collapsed = !$rootScope.collapsed;
 
         //获取所有的nav
@@ -58,5 +59,8 @@ App.run(['$rootScope', '$filter', function($rootScope, $filter) {
         date = $filter('date')(date, 'yyyy-MM-dd');
         return date
     }
+
+    //定义是否显示遮盖图片的状态
+    $rootScope.loaded = true;
 
 }])

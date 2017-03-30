@@ -16,6 +16,11 @@ angular.module('Contrllers', [])
 //今日一刻控制器
 .controller('todayCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
     $rootScope.title = '今日一刻';
+
+    //控制遮挡物
+    $rootScope.loaded = true;
+
+
     //获取时间
     $scope.date = $rootScope.getTime();
     //通过控制器获取数据
@@ -31,11 +36,19 @@ angular.module('Contrllers', [])
     }).then(function(data) {
         //处理数据
         $scope.posts = data.data.posts;
+
+        //去掉遮挡物
+        $rootScope.loaded = false;
     });
 }])
 
 //往期内容控制器
 .controller('olderCtrl', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope) {
+
+    //控制遮挡物
+    $rootScope.loaded = true;
+
+
     $rootScope.title = '往期内容';
     $scope.date = $rootScope.getTime(-1);
     //通过控制器获取数据
@@ -49,9 +62,11 @@ angular.module('Contrllers', [])
         }
         //获取返回的数据
     }).then(function(data) {
-        console.log(data)
-            //处理数据
+        //处理数据
         $scope.posts = data.data.posts;
+
+        //去掉遮挡物
+        $rootScope.loaded = false;
     });
 
 }])
