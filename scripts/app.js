@@ -9,7 +9,7 @@ App.config(['$routeProvider', function($routeProvider) {
         //路由地址
         '/today', {
             //路由页面
-            templateUrl: './views/today.html',
+            templateUrl: '/project/myYike/views/today.html',
             //这个路由的控制器
             controller: 'todayCtrl'
         }
@@ -48,7 +48,15 @@ App.run(['$rootScope', '$filter', function($rootScope, $filter) {
     };
 
 
-    //获取当前系统时间
-    $rootScope.now = $filter('date')(new Date, 'yyyy-MM-dd');
+    //传入需要获取时间的毫秒数, 得出对应的时间
+    $rootScope.getTime = function(time) {
+        if (!time) {
+            time = 0;
+        }
+        var date = new Date();
+        date = new Date(date.getTime() + time * 24 * 60 * 60 * 1000)
+        date = $filter('date')(date, 'yyyy-MM-dd');
+        return date
+    }
 
 }])
